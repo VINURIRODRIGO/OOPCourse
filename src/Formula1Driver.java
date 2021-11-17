@@ -80,15 +80,15 @@ public class Formula1Driver extends Driver{
         String manufacturerName = input.next();
         manufacturerName= manufacturerName.substring(0,1).toUpperCase()+manufacturerName.substring(1).toLowerCase();
 
-        System.out.print("Enter the name of the new driver: ");
-        String driverName = input.next();
-        driverName= driverName.substring(0,1).toUpperCase()+driverName.substring(1).toLowerCase();
-
-        System.out.print("Enter the location: ");
-        String location = input.next();
-        location= location.substring(0,1).toUpperCase()+location.substring(1).toLowerCase();
-
         if(hashMap.containsKey(manufacturerName)){
+            System.out.print("Enter the name of the new driver: ");
+            String driverName = input.next();
+            driverName= driverName.substring(0,1).toUpperCase()+driverName.substring(1).toLowerCase();
+
+            System.out.print("Enter the location: ");
+            String location = input.next();
+            location= location.substring(0,1).toUpperCase()+location.substring(1).toLowerCase();
+
             Formula1Driver old = hashMap.get(manufacturerName);
             hashMap.replace(manufacturerName, old, new Formula1Driver(driverName,location,old.getPoints(),old.getLocalDate()));
             storeData(hashMap);
