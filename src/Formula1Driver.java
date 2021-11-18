@@ -32,28 +32,30 @@ public class Formula1Driver extends Driver{
 
 
     /***
-     * Siva Reddy
-     * https://www.youtube.com/watch?v=HlpWrH3CcoM
+     * (Siva Reddy, 2017)
+     * Siva Reddy. (2017). How to use User defined Object as key in HashMap with an example.
+     * Available from https://www.youtube.com/watch?v=HlpWrH3CcoM
+     * [Accessed 18 November 2021].
      * ***/
     public void storeData(LinkedHashMap<String,Formula1Driver> details){
         Set<Map.Entry<String, Formula1Driver>> set = details.entrySet();
         try {
             FileWriter myWriter = new FileWriter("output.txt");
-            for (Map.Entry<String, Formula1Driver> entry: set){
-                myWriter.write(entry.getKey()+","+entry.getValue()+"\n");
+            for (Map.Entry<String, Formula1Driver> data: set){
+                myWriter.write(data.getKey()+","+data.getValue()+"\n");
             } myWriter.close();
             System.out.println("Successfully Updated");
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An I/O error occurred.");
             e.printStackTrace(); }
     }
     public void loadFile() {
 
         String line;
-        String driv;
-        String manuf;
-        String locat;
+        String driver;
+        String team;
+        String location;
         int point;
         LocalDate date;
         try {
@@ -61,12 +63,12 @@ public class Formula1Driver extends Driver{
             BufferedReader myReader = new BufferedReader(new FileReader(myObj));
             while ((line = myReader.readLine()) != null) {
                 String[] data=line.split(",");
-                driv = data[1];
-                manuf = data[0];
-                locat = data[2];
+                driver = data[1];
+                team = data[0];
+                location = data[2];
                 point = Integer.parseInt(data[3]);
                 date = LocalDate.parse(data[4]);
-                hashMap.put(manuf, new Formula1Driver(driv, locat, point, date));
+                hashMap.put(team, new Formula1Driver(driver, location, point, date));
 
             }
         }

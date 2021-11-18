@@ -37,6 +37,11 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         }while (!choice.equals("Q"));
     }
 
+    /* (Topolnik, 2021)
+     * Topolnik, M. (2021). java - Shuffling values in HashMap. Stack Overflow.
+     * Available from https://stackoverflow.com/questions/10571712/shuffling-values-in-hashmap
+     * [Accessed 18 November 2021].
+     */
     @Override
     public void runRace() {
             fd.loadFile();
@@ -91,12 +96,17 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         Set<Map.Entry<String, ArrayList<Integer>>> set = pointHashMap.entrySet();
         try {
             FileWriter myWriter = new FileWriter("points.txt");
-            for (Map.Entry<String, ArrayList<Integer>> entry: set){
-                myWriter.write(entry.getKey()+","+ entry.getValue() +"\n");
+            /* (Skinner and Matthieu, 2010)
+             * Skinner, C. and Matthieu. (2010). iteration - Java HashMap: How to get a key and value by index? Stack Overflow.
+             * Available from https://stackoverflow.com/questions/3973512/java-hashmap-how-to-get-a-key-and-value-by-index
+             * [Accessed 18 November 2021].
+             */
+            for (Map.Entry<String, ArrayList<Integer>> data: set){
+                myWriter.write(data.getKey()+","+ data.getValue() +"\n");
             } myWriter.close();
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An I/O error occurred.");
             e.printStackTrace(); }
     }
 
@@ -217,10 +227,11 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 //    }
 
     /***
-     *
-     * https://www.youtube.com/watch?v=buD-_4-PXWw
+     * (Java Made Easy, 2017)
+     * Java Made Easy. (2017). How To Sort Objects On Multiple Fields Using Comparator Interface.
+     * Available from https://www.youtube.com/watch?v=buD-_4-PXWw
+     * [Accessed 18 November 2021].
      */
-
     public void comparison() {
         List<ArrayList<Integer>> list2 = new ArrayList<>(pointHashMap.values());
         Set<Map.Entry<String, Formula1Driver>> entries = fd.hashMap.entrySet();
@@ -244,6 +255,12 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
             }
             return -1;
         });
+
+        /* (Pshemo, 2013)
+         * Pshemo. (2013). java - How can I create table using ASCII in a console? Stack Overflow.
+         * Available from https://stackoverflow.com/questions/15215326/how-can-i-create-table-using-ascii-in-a-console
+         * [Accessed 18 November 2021].
+         */
         String leftAlignFormat = "| %-20s | %-8s | %-20s | %-12d | %-20s |%n";
         System.out.format("+----------------------+----------+----------------------+--------------+----------------------------------------------------------------------+%n");
         System.out.format("| Car manufacturer     | Driver   | Location             | Total Points |_______________________Total Positions _______________________________|%n");
@@ -251,11 +268,22 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.format("+----------------------+----------+----------------------+--------------+-------+------+------+------+------+------+------+------+------+------+%n");
         for (int r = listData.size()-1; r>=0; r--) {
             Map.Entry<String, Formula1Driver> listDatum = listData.get(r);
+            /* (Kartik, 2014)
+             * Kartik. (2014). java - Conversion of Integer Arraylist to string.
+             * Stack Overflow.
+             * Available from https://stackoverflow.com/questions/21412933/conversion-of-integer-arraylist-to-string
+             * [Accessed 18 November 2021].
+             */
             StringBuilder str = new StringBuilder();
             ArrayList<Integer> x =ChampionshipManager.pointHashMap.get(listDatum.getKey());
             for (int i = 0; i < x.size(); i++)
             {   int myNumbersInt = x.get(i);
                 if (i!=x.size()-1){
+                    /*  (Erickson, 2011)
+                     * Erickson. (2011). Adding whitespace in Java.
+                     * Stack Overflow. Available from https://stackoverflow.com/questions/5249566/adding-whitespace-in-java
+                     * [Accessed 18 November 2021].
+                     */
                     str.append( String.format(" %s %-2s |",myNumbersInt," "));
                 }else{
                     str.append( String.format(" %s %-2s",myNumbersInt," "));
